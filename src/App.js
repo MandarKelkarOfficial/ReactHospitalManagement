@@ -1,11 +1,12 @@
 import "./App.css";
+import BarChart from "./Components/BarChart";
 import Cards from "./Components/Cards";
 import DoctorRecord from "./Components/DoctorRecord";
 import Navbar from "./Components/Navbar";
 import NewEntryForm from "./Components/NewEntryForm";
 import PatientRecordForm from "./Components/PatientRecordForm";
 // import Sidebar from './Components/Sidebar';
-import Table from "./Components/Table";
+// import Table from "./Components/Table";
 import React, { useState } from "react";
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
@@ -31,7 +32,7 @@ function App() {
               <>
                 <Navbar />
                 <Cards />
-                <Table />
+                <BarChart/>
               </>
             }
           />

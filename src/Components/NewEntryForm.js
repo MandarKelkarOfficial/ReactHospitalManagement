@@ -175,6 +175,9 @@ export default function NewEntryForm({ onSubmit }) {
               SUBMIT
             </button>
           </div>
+          <div className="col w-ful">
+          <button className="btn btn-outline-primary w-100">CLEAR</button>
+        </div>
         </div>
       </form>
   

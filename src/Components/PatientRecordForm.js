@@ -146,9 +146,47 @@ export default function PatientRecordForm() {
           </div>
         </div>
       </div>
+      <div className="row">
+        <div className="col">
+          <div className="form-floating mb-3">
+            <input
+              type="text"
+              className="form-control"
+              id="floatingDoseage"
+              placeholder="doseage"
+            />
+            <label htmlFor="floatingDoseage">doseage 1</label>
+          </div>
+        </div>
+        <div className="col">
+          <div className="form-floating mb-3">
+            <input
+              type="text"
+              className="form-control"
+              id="floatingDoseage"
+              placeholder="doseage"
+            />
+            <label htmlFor="floatingDoseage">doseage 2</label>
+          </div>
+        </div>
+        <div className="col">
+          <div className="form-floating mb-3">
+            <input
+              type="text"
+              className="form-control"
+              id="floatingDoseage"
+              placeholder="doseage"
+            />
+            <label htmlFor="floatingDoseage">doseage 3</label>
+          </div>
+        </div>
+      </div>
       <div className="row mt-3 w-full">
         <div className="col w-ful">
           <button className="btn btn-primary w-100">SUBMIT</button>
+        </div>
+        <div className="col w-ful">
+          <button className="btn btn-outline-primary w-100">CLEAR</button>
         </div>
       </div>
     </div>

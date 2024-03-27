@@ -6,7 +6,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  background-color:#f8fbfb
+  background-color:white;
 }
 
 code {
@@ -24,4 +24,6 @@ code {
   text-decoration: underline white ;
   font-weight: 600;
 }
+
+
 
