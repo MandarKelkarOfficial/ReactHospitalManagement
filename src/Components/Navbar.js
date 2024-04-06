@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-
 export default function Navbar() {
   return (
     <div>
@@ -21,51 +20,59 @@ export default function Navbar() {
           >
             <span className="navbar-toggler-icon"></span>
           </button>
-          <div className="collapse navbar-collapse justify-content-center" id="navbarNavDropdown">
+          <div
+            className="collapse navbar-collapse justify-content-center"
+            id="navbarNavDropdown"
+          >
             <ul className="navbar-nav">
               {/* <li className="nav-item">
                 <a className="nav-link active" aria-current="page" href="/">
                   DOCTOR
                 </a>
               </li> */}
-              <li className="nav-item dropdown">
-          <a className="nav-link active dropdown-toggle" href="/" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-          DOCTOR          </a>
-          <ul className="dropdown-menu">
+              <li className="nav-item ">
+                <Link className="nav-link active " to="/doctor">
+                  DOCTOR
+                </Link>
+                {/* <ul className="dropdown-menu">
             <li><Link className="dropdown-item" to="/new-entry">New Entry</Link></li>
             <li><Link className="dropdown-item" to="/doctor-record">Doctor Record</Link></li>
             <li><Link className="dropdown-item" to="/patient-record">Patient Record</Link></li>
-          </ul>
-        </li>
+          </ul> */}
+              </li>
 
               <li className="nav-item">
-                <a className="nav-link active"  aria-current="page" href="/">
+                <Link
+                  className="nav-link active"
+                  aria-current="page"
+                  to="/pharmacy"
+                >
                   PHARMACY
-                </a>
+                </Link>
               </li>
 
               <li className="nav-item">
-                <a className="nav-link active" aria-current="page" href="/">
+                <Link className="nav-link active" aria-current="page" to="/distributor">
                   DISTRIBUTOR
-                </a>
+                </Link>
               </li>
 
               <li className="nav-item">
-                <a className="nav-link active" aria-current="page" href="/">
+                <Link className="nav-link active" aria-current="page" to="/manufacturer">
                   MANUFACTURER
-                </a>
+                </Link>
               </li>
 
               <li className="nav-item">
-                <a className="nav-link active" aria-current="page" href="/">
-                  STOCK LIST
-                </a>
+                <Link className="nav-link active" aria-current="page" to="/stockist">
+                  STOCKIST
+                </Link>
               </li>
 
               <li className="nav-item">
-                <a className="nav-link active" aria-current="page" href="/">
+                <Link className="nav-link active" aria-current="page" to="/supplier">
                   SUPPLIER
-                </a>
+                </Link>
               </li>
             </ul>
           </div>

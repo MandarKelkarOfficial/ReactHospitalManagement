@@ -3,7 +3,9 @@ import React from "react";
 function DoctorRecord({ doctors }) {
   return (
     <div className="container ">
-        <div className="alert alert-danger mt-2">The records will be reset after refresh</div>
+      <div className="alert alert-danger mt-2">
+        The records will be reset after refresh
+      </div>
       <h2 className="text-center mt-2">Doctor Records</h2>
       <table className="table mt-2">
         <thead>

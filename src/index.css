@@ -13,17 +13,18 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-
+/* 
 .card:hover{
   margin-top: -5px;
   transition: all ease-in-out 3ms;
-}
+} */
 
 .navbar-nav .nav-item .nav-link:hover {
   color: aliceblue;
   text-decoration: underline white ;
   font-weight: 600;
 }
+
 
 
 
