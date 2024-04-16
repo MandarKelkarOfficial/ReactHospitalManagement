@@ -1,29 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-
 export default function NewEntryForm({ onSubmit }) {
-  // const [doctors, setDoctors] = useState([]);
-
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   const formData = new FormData(e.target);
-  //   const doctor = {
-  //     id: formData.get("id"),
-  //     email: formData.get("email"),
-  //     name: formData.get("name"),
-  //     address: formData.get("address"),
-  //     city: formData.get("city"),
-  //     state: formData.get("state"),
-  //     postalCode: formData.get("postalCode"),
-  //     country: formData.get("country"),
-  //     phoneNumber: formData.get("phoneNumber"),
-  //     qualification: formData.get("qualification"),
-  //     licenseNumber: formData.get("licenseNumber"),
-  //   };
-  //   setDoctors([...doctors, doctor]);
-  //   onSubmit([...doctors, doctor]);
-  // };
   const [doctor, setDoctor] = useState({
     id: "",
     email: "",
@@ -46,6 +24,20 @@ export default function NewEntryForm({ onSubmit }) {
         doctor
       );
       console.log(response.data);
+      // Clear the form after successful submission
+      setDoctor({
+        id: document.getElementById("id").value,
+        email: document.getElementById("email").value,
+        name: document.getElementById("name").value,
+        address: document.getElementById("address").value,
+        city: document.getElementById("city").value,
+        state: document.getElementById("state").value,
+        postalCode: document.getElementById("postalCode").value,
+        country: document.getElementById("country").value,
+        phoneNumber: document.getElementById("phoneNumber").value,
+        qualification: document.getElementById("qualification").value,
+        licenseNumber: document.getElementById("licenseNumber").value,
+      });
     } catch (error) {
       console.error(error);
     }
@@ -73,6 +65,8 @@ export default function NewEntryForm({ onSubmit }) {
                 id="id"
                 name="id"
                 placeholder="Doctor ID"
+                value={doctor.id}
+                onChange={handleChange}
               />
               <label htmlFor="id">Doctor ID</label>
             </div>
@@ -85,6 +79,8 @@ export default function NewEntryForm({ onSubmit }) {
                 id="email"
                 name="email"
                 placeholder="Email"
+                value={doctor.email}
+                onChange={handleChange}
               />
               <label htmlFor="email">Doctor Email</label>
             </div>
@@ -97,6 +93,8 @@ export default function NewEntryForm({ onSubmit }) {
                 id="name"
                 name="name"
                 placeholder="Name"
+                value={doctor.name}
+                onChange={handleChange}
               />
               <label htmlFor="name">Name</label>
             </div>
@@ -111,6 +109,8 @@ export default function NewEntryForm({ onSubmit }) {
                 id="address"
                 name="address"
                 placeholder="Address"
+                value={doctor.address}
+                onChange={handleChange}
               />
               <label htmlFor="address">Address</label>
             </div>
@@ -123,6 +123,8 @@ export default function NewEntryForm({ onSubmit }) {
                 id="city"
                 name="city"
                 placeholder="City"
+                value={doctor.city}
+                onChange={handleChange}
               />
               <label htmlFor="city">City</label>
             </div>
@@ -135,6 +137,8 @@ export default function NewEntryForm({ onSubmit }) {
                 id="state"
                 name="state"
                 placeholder="State"
+                value={doctor.state}
+                onChange={handleChange}
               />
               <label htmlFor="state">State</label>
             </div>
@@ -149,6 +153,8 @@ export default function NewEntryForm({ onSubmit }) {
                 id="postalCode"
                 name="postalCode"
                 placeholder="Postal Code"
+                value={doctor.postalCode}
+                onChange={handleChange}
               />
               <label htmlFor="postalCode">Postal Code</label>
             </div>
@@ -161,6 +167,8 @@ export default function NewEntryForm({ onSubmit }) {
                 id="country"
                 name="country"
                 placeholder="Country"
+                value={doctor.country}
+                onChange={handleChange}
               />
               <label htmlFor="country">Country</label>
             </div>
@@ -173,6 +181,8 @@ export default function NewEntryForm({ onSubmit }) {
                 id="phoneNumber"
                 name="phoneNumber"
                 placeholder="Phone Number"
+                value={doctor.phoneNumber}
+                onChange={handleChange}
               />
               <label htmlFor="phoneNumber">Phone Number</label>
             </div>
@@ -187,6 +197,8 @@ export default function NewEntryForm({ onSubmit }) {
                 id="qualification"
                 name="qualification"
                 placeholder="Qualification"
+                value={doctor.qualification}
+                onChange={handleChange}
               />
               <label htmlFor="qualification">Qualification</label>
             </div>
@@ -199,6 +211,8 @@ export default function NewEntryForm({ onSubmit }) {
                 id="licenseNumber"
                 name="licenseNumber"
                 placeholder="License Number"
+                value={doctor.licenseNumber}
+                onChange={handleChange}
               />
               <label htmlFor="licenseNumber">License Number</label>
             </div>

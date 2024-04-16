@@ -1,11 +1,27 @@
-import React from "react";
 
-function DoctorRecord({ doctors }) {
+// export default DoctorRecord;
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+
+function DoctorRecord() {
+  const [doctors, setDoctors] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get("http://localhost:5000/api/doctors");
+        setDoctors(response.data);
+      } catch (error) {
+        console.error("Error fetching data: ", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   return (
-    <div className="container ">
-      <div className="alert alert-danger mt-2">
-        The records will be reset after refresh
-      </div>
+    <div className="container">
+
       <h2 className="text-center mt-2">Doctor Records</h2>
       <table className="table mt-2">
         <thead>
@@ -24,8 +40,8 @@ function DoctorRecord({ doctors }) {
           </tr>
         </thead>
         <tbody>
-          {doctors.map((doctor, index) => (
-            <tr key={index}>
+          {doctors.map((doctor) => (
+            <tr key={doctor._id}>
               <td>{doctor.id}</td>
               <td>{doctor.email}</td>
               <td>{doctor.name}</td>

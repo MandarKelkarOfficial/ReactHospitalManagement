@@ -1,84 +1,194 @@
 import React, { useState } from "react";
+import axios from "axios";
 
 export default function NewPatientEntryForm({ onSubmit }) {
-  const [patients, setPatient] = useState([]);
-  const handleSubmitPatient = (e) => {
-    e.preventDefault();
-    const formData = new FormData(e.target);
-    const patient = {
-      id: formData.get("id"),
-      email: formData.get("email"),
-      name: formData.get("name"),
-      address: formData.get("address"),
-      city: formData.get("city"),
-      state: formData.get("state"),
-      postalCode: formData.get("postalCode"),
-      country: formData.get("country"),
-      phoneNumber: formData.get("phoneNumber"),
-      qualification: formData.get("qualification"),
-      licenseNumber: formData.get("licenseNumber"),
-    };
-    setPatient([...patients, patient]);
-    onSubmit([...patients, patient]);
-  };
-
-  // ------------------------------------------------------------------------------------------------------------------
+  const [patients, setPatients] = useState([
+    {
+      id: "",
+      email: "",
+      name: "",
+      address: "",
+      city: "",
+      state: "",
+      postalCode: "",
+      country: "",
+      phoneNumber: "",
+      age: "",
+      gender: "",
+      bloodGroup: "",
+      drugs: "",
+      dosages: "",
+    },
+  ]);
   const [numDosageFields, setNumDosageFields] = useState(0);
   const [numDrugFields, setNumDrugFields] = useState(0);
-  const [drug, setDrug] = useState("");
+  const [dosages, setDosages] = useState([]);
+  const [drugs, setDrugs] = useState([]);
+
+
+
+  // const handleSubmitPatient = async (e) => {
+  //   e.preventDefault();
+  //   // const formData = new FormData(e.target);
+  //   try {
+  //     const response = await axios.post(
+  //       "http://localhost:5000/api/patients",
+  //       patients
+  //     );
+  //     console.log(response.data);
+  //     // setPatients([...patients, response.data]);
+  //     // onSubmit([...patients, response.data]);
+  //     console.log("Data inserted successfully");
+  //     setPatients({
+  //       id: document.getElementById("id").value,
+  //       email: document.getElementById("email").value,
+  //       name: document.getElementById("name").value,
+  //       address: document.getElementById("address").value,
+  //       city: document.getElementById("city").value,
+  //       state: document.getElementById("state").value,
+  //       postalCode: document.getElementById("postalCode").value,
+  //       country: document.getElementById("country").value,
+  //       phoneNumber: document.getElementById("phoneNumber").value,
+  //       age: document.getElementById("age").value,
+  //       gender: document.getElementById("gender").value,
+  //       bloodGroup: document.getElementById("bloodGroup").value,
+  //       drugs: drugs,
+  //       dosages: dosages,
+  //     });
+  
+  //   } catch (error) {
+  //     console.error("Error adding patient:", error);
+  //   }
+  // };
+
+  const handleSubmitPatient = async (e) => {
+    e.preventDefault();
+    try {
+      const newPatient = {
+        id: document.getElementById("id").value,
+        email: document.getElementById("email").value,
+        name: document.getElementById("name").value,
+        address: document.getElementById("address").value,
+        city: document.getElementById("city").value,
+        state: document.getElementById("state").value,
+        postalCode: document.getElementById("postalCode").value,
+        country: document.getElementById("country").value,
+        phoneNumber: document.getElementById("phoneNumber").value,
+        age: document.getElementById("age").value,
+        gender: document.getElementById("gender").value,
+        bloodGroup: document.getElementById("bloodGroup").value,
+        drugs: drugs,
+        dosages: dosages,
+      };
+  
+      const response = await axios.post(
+        "http://localhost:5000/api/patients",
+        newPatient
+      );
+      console.log(response.data);
+      console.log("Data inserted successfully");
+      // Clear form fields after successful submission
+      setPatients({
+        id: "",
+        email: "",
+        name: "",
+        address: "",
+        city: "",
+        state: "",
+        postalCode: "",
+        country: "",
+        phoneNumber: "",
+        age: "",
+        gender: "",
+        bloodGroup: "",
+        drugs: "",
+        dosages: "",
+      });
+      setDrugs([]);
+      setDosages([]);
+    } catch (error) {
+      console.error("Error adding patient:", error);
+    }
+  };
+  
 
   const handleNumFieldsChange = (e) => {
     const value = parseInt(e.target.value, 10);
     setNumDosageFields(value);
   };
 
-  const handleDrugChange = (e) => {
-    setDrug(e.target.value);
+  const handleDrugChange = (e, index) => {
+    const newDrugs = [...drugs];
+    newDrugs[index] = e.target.value;
+    setDrugs(newDrugs);
   };
-
-  const renderDosageFields = () => {
-    const fields = [];
-    for (let i = 1; i <= numDosageFields; i++) {
-      fields.push(
-        <div className="col" key={i}>
-          <div className="form-floating mb-3">
-            <input
-              type="text"
-              className="form-control"
-              id={`floatingDosage${i}`}
-              placeholder={`Dosage ${i}`}
-            />
-            <label htmlFor={`floatingDosage${i}`}>{`Dosage ${i}`}</label>
-          </div>
-        </div>
-      );
-    }
-    return fields;
-  };
-
+  
   const renderDrugFields = () => {
     const fields = [];
-    for (let i = 1; i <= numDrugFields; i++) {
+    for (let i = 0; i < numDrugFields; i++) {
       fields.push(
         <div className="col" key={i}>
           <div className="form-floating mb-3">
             <input
               type="text"
               className="form-control"
-              id={`floatingDrug${i}`}
-              placeholder={`Drug ${i}`}
+              id={`drugs-${i}`}
+              placeholder={`Drug ${i + 1}`}
+              value={drugs[i] || ""}
+              onChange={(e) => handleDrugChange(e, i)}
             />
-            <label htmlFor={`floatingDrug${i}`}>{`Drug ${i}`}</label>
+            <label htmlFor={`drugs-${i}`}>{`Drug ${i + 1}`}</label>
           </div>
         </div>
       );
     }
     return fields;
   };
+  
+
+
+  const handlePatientChange = (e) => {
+    setPatients(e.target.value);
+  };
+
+
+  const handleDosageChange = (e, index) => {
+    const newDosages = [...dosages];
+    newDosages[index] = e.target.value;
+    setDosages(newDosages);
+  };
+  
+  const renderDosageFields = () => {
+    const fields = [];
+    for (let i = 0; i < numDosageFields; i++) {
+      fields.push(
+        <div className="col" key={i}>
+          <div className="form-floating mb-3">
+            <input
+              type="text"
+              className="form-control"
+              id={`dosages-${i}`}
+              placeholder={`Dosage ${i + 1}`}
+              value={dosages[i] || ""}
+              onChange={(e) => handleDosageChange(e, i)}
+            />
+            <label htmlFor={`dosages-${i}`}>{`Dosage ${i + 1}`}</label>
+          </div>
+        </div>
+      );
+    }
+    return fields;
+  };
+  
+
 
   return (
     <div className="container mt-4">
-      <form method="post" onSubmit={handleSubmitPatient}>
+      <form
+        action="http://localhost:5000/api/patients"
+        method="post"
+        onSubmit={handleSubmitPatient}
+      >
         <div className="heading">
           <h1 className="text-center mb-4"> PATIENT ENTRY FORM</h1>
         </div>
@@ -88,21 +198,12 @@ export default function NewPatientEntryForm({ onSubmit }) {
               <input
                 type="text"
                 className="form-control"
-                id="floatingPatientID"
+                id="id"
                 placeholder="Patient ID"
+                value={patients.id}
+                onChange={handlePatientChange}
               />
               <label htmlFor="floatingPatientID">Patient ID</label>
-            </div>
-          </div>
-          <div className="col">
-            <div className="form-floating mb-3">
-              <input
-                type="text"
-                className="form-control"
-                id="floatingName"
-                placeholder="Name"
-              />
-              <label htmlFor="floatingName">Name</label>
             </div>
           </div>
           <div className="col">
@@ -110,24 +211,12 @@ export default function NewPatientEntryForm({ onSubmit }) {
               <input
                 type="email"
                 className="form-control"
-                id="floatingEmail"
+                id="email"
                 placeholder="Email"
+                value={patients.email}
+                onChange={handlePatientChange}
               />
               <label htmlFor="floatingEmail">Patient Email</label>
-            </div>
-          </div>
-       
-        </div>
-        <div className="row">
-          <div className="col">
-            <div className="form-floating">
-              <input
-                type="text"
-                className="form-control"
-                id="floatingAddress"
-                placeholder="Address"
-              />
-              <label htmlFor="floatingAddress">Address</label>
             </div>
           </div>
           <div className="col">
@@ -135,8 +224,37 @@ export default function NewPatientEntryForm({ onSubmit }) {
               <input
                 type="text"
                 className="form-control"
-                id="floatingCity"
+                id="name"
+                value={patients.name}
+                onChange={handlePatientChange}
+                placeholder="Name"
+              />
+              <label htmlFor="floatingName">Name</label>
+            </div>
+          </div>
+        </div>
+        <div className="row">
+          <div className="col">
+            <div className="form-floating mb-3">
+              <input
+                type="text"
+                className="form-control"
+                id="address"
+                value={patients.address}
+                placeholder="Address"
+              />
+              <label htmlFor="floatingAddress">Address</label>
+            </div>
+          </div>
+          <div className="col">
+            <div className="form-floating">
+              <input
+                type="text"
+                className="form-control mb-3"
+                id="city"
                 placeholder="City"
+                value={patients.city}
+                onChange={handlePatientChange}
               />
               <label htmlFor="floatingCity">City</label>
             </div>
@@ -146,8 +264,10 @@ export default function NewPatientEntryForm({ onSubmit }) {
               <input
                 type="text"
                 className="form-control"
-                id="floatingState"
+                id="state"
                 placeholder="State"
+                value={patients.state}
+                onChange={handlePatientChange}
               />
               <label htmlFor="floatingState">State</label>
             </div>
@@ -159,8 +279,10 @@ export default function NewPatientEntryForm({ onSubmit }) {
               <input
                 type="text"
                 className="form-control"
-                id="floatingPostalCode"
+                id="postalCode"
                 placeholder="Postal Code"
+                value={patients.postalCode}
+                onChange={handlePatientChange}
               />
               <label htmlFor="floatingPostalCode">Postal Code</label>
             </div>
@@ -170,8 +292,11 @@ export default function NewPatientEntryForm({ onSubmit }) {
               <input
                 type="text"
                 className="form-control"
-                id="floatingCountry"
+                id="country"
                 placeholder="Country"
+                value={patients.country}
+                onChange={handlePatientChange}
+
               />
               <label htmlFor="floatingCountry">Country</label>
             </div>
@@ -181,8 +306,10 @@ export default function NewPatientEntryForm({ onSubmit }) {
               <input
                 type="text"
                 className="form-control"
-                id="floatingPhoneNumber"
+                id="phoneNumber"
                 placeholder="Phone Number"
+                value={patients.phoneNumber}
+                onChange={handlePatientChange}
               />
               <label htmlFor="floatingPhoneNumber">Phone Number</label>
             </div>
@@ -194,7 +321,9 @@ export default function NewPatientEntryForm({ onSubmit }) {
               <input
                 type="text"
                 className="form-control"
-                id="floatingAge"
+                id="age"
+                value={patients.age}
+                onChange={handlePatientChange}
                 placeholder="Age"
               />
               <label htmlFor="floatingAge">Age</label>
@@ -205,7 +334,9 @@ export default function NewPatientEntryForm({ onSubmit }) {
               <input
                 type="text"
                 className="form-control"
-                id="floatingGender"
+                id="gender"
+                value={patients.gender}
+                onChange={handlePatientChange}
                 placeholder="Gender"
               />
               <label htmlFor="floatingGender">Gender</label>
@@ -216,7 +347,9 @@ export default function NewPatientEntryForm({ onSubmit }) {
               <input
                 type="text"
                 className="form-control"
-                id="floatingBloodGroup"
+                id="bloodGroup"
+                value={patients.bloodGroup}
+                onChange={handlePatientChange}
                 placeholder="Blood Group"
               />
               <label htmlFor="floatingBloodGroup">Blood Group</label>
@@ -260,8 +393,7 @@ export default function NewPatientEntryForm({ onSubmit }) {
           <div className="col">{renderDosageFields()}</div>
           <div className="col">{renderDrugFields()}</div>
         </div>
-        
-        {/* <div className="row"></div> */}
+
         <div className="row mt-3 mb-5 w-full">
           <div className="col w-ful">
             <button className="btn btn-primary w-100" type="submit">

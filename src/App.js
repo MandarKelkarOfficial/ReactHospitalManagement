@@ -37,6 +37,7 @@ import StockistNewEntry from "./Components/Stockist/StockistNewEntry";
 import StockistInventory from "./Components/Stockist/StockistInventory";
 import StockistDStock from "./Components/Stockist/StockistDStock";
 import StockistMstock from "./Components/Stockist/StockistMstock";
+import NewDistributerEntry from "./Components/Distributor/NewDistributerEntry";
 
 function App() {
   const [doctors, setDoctors] = useState([]);
@@ -211,6 +212,17 @@ function App() {
                 <Navbar />
                 <Distributor />
                 <DInventory />
+              </>
+            }
+          />
+
+          <Route
+            path="/new-entry-dist"
+            element={
+              <>
+                <Navbar />
+                <Distributor />
+                <NewDistributerEntry/>
               </>
             }
           />
