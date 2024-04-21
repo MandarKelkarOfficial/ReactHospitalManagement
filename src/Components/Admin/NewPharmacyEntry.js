@@ -1,13 +1,14 @@
 import React, { useState } from "react";
+import axios from "axios";
 
 export default function NewPharmacyForm({ onSubmit }) {
   const [pharmacies, setPharmacies] = useState([]);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
     const pharmacy = {
-      id: formData.get("id"),
+      pid: formData.get("id"),
       name: formData.get("name"),
       address: formData.get("address"),
       city: formData.get("city"),
@@ -16,8 +17,23 @@ export default function NewPharmacyForm({ onSubmit }) {
       country: formData.get("country"),
       phoneNumber: formData.get("phoneNumber"),
     };
-    setPharmacies([...pharmacies, pharmacy]);
-    onSubmit([...pharmacies, pharmacy]);
+
+    try {
+      const response = await axios.post(
+        "http://localhost:5000/api/pharmacies",
+        pharmacy
+      );
+      setPharmacies([...pharmacies, response.data]); // Update state with fetched data
+      // if (typeof onSubmit === "function") {
+      //   onSubmit([...pharmacies, pharmacy]);
+      // } else {
+      //   console.error("onSubmit is not a function");
+      // }
+      console.log(response.data);
+    } catch (error) {
+      console.error(error);
+      // Handle errors appropriately, e.g., display an error message
+    }
   };
 
   return (
@@ -25,7 +41,11 @@ export default function NewPharmacyForm({ onSubmit }) {
       <div className="heading">
         <h1 className="text-center mb-4"> NEW PHARMACY ENTRY FORM</h1>
       </div>
-      <form onSubmit={handleSubmit}>
+      <form
+        method="POST"
+        action="http://localhost:5000/api/pharmacies"
+        onSubmit={handleSubmit}
+      >
         <div className="row">
           <div className="col">
             <div className="form-floating mb-3">

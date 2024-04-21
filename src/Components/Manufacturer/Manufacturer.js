@@ -6,9 +6,7 @@ export default function Manufacturer() {
     <div className='container mt-4'>
         <div className="tabs">
             <div className="row w-full">
-                <div className="col">
-                    <Link to="/new-manufacturer-entry"><button type="button" className='btn btn-outline-primary w-100'>NEW ENTRY</button></Link>
-                </div>
+          
                 <div className="col">
                     <Link to="/m-inventory"><button type="button" className='btn btn-outline-primary w-100'>M - INVENTORY</button></Link>
                 </div>

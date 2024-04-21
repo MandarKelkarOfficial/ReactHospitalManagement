@@ -4,7 +4,7 @@ import axios from "axios";
 export default function NewPatientEntryForm({ onSubmit }) {
   const [patients, setPatients] = useState([
     {
-      id: "",
+      ptid: "",
       email: "",
       name: "",
       address: "",
@@ -27,45 +27,11 @@ export default function NewPatientEntryForm({ onSubmit }) {
 
 
 
-  // const handleSubmitPatient = async (e) => {
-  //   e.preventDefault();
-  //   // const formData = new FormData(e.target);
-  //   try {
-  //     const response = await axios.post(
-  //       "http://localhost:5000/api/patients",
-  //       patients
-  //     );
-  //     console.log(response.data);
-  //     // setPatients([...patients, response.data]);
-  //     // onSubmit([...patients, response.data]);
-  //     console.log("Data inserted successfully");
-  //     setPatients({
-  //       id: document.getElementById("id").value,
-  //       email: document.getElementById("email").value,
-  //       name: document.getElementById("name").value,
-  //       address: document.getElementById("address").value,
-  //       city: document.getElementById("city").value,
-  //       state: document.getElementById("state").value,
-  //       postalCode: document.getElementById("postalCode").value,
-  //       country: document.getElementById("country").value,
-  //       phoneNumber: document.getElementById("phoneNumber").value,
-  //       age: document.getElementById("age").value,
-  //       gender: document.getElementById("gender").value,
-  //       bloodGroup: document.getElementById("bloodGroup").value,
-  //       drugs: drugs,
-  //       dosages: dosages,
-  //     });
-  
-  //   } catch (error) {
-  //     console.error("Error adding patient:", error);
-  //   }
-  // };
-
   const handleSubmitPatient = async (e) => {
     e.preventDefault();
     try {
       const newPatient = {
-        id: document.getElementById("id").value,
+        ptid: document.getElementById("ptid").value,
         email: document.getElementById("email").value,
         name: document.getElementById("name").value,
         address: document.getElementById("address").value,
@@ -89,7 +55,7 @@ export default function NewPatientEntryForm({ onSubmit }) {
       console.log("Data inserted successfully");
       // Clear form fields after successful submission
       setPatients({
-        id: "",
+        ptid: "",
         email: "",
         name: "",
         address: "",
@@ -198,9 +164,9 @@ export default function NewPatientEntryForm({ onSubmit }) {
               <input
                 type="text"
                 className="form-control"
-                id="id"
+                id="ptid"
                 placeholder="Patient ID"
-                value={patients.id}
+                value={patients.ptid}
                 onChange={handlePatientChange}
               />
               <label htmlFor="floatingPatientID">Patient ID</label>

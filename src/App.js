@@ -1,11 +1,12 @@
 import "./App.css";
 // import BarChart from "./Components/BarChart";
 import Cards from "./Components/Cards";
+
 import Doctor from "./Components/Doctor/Doctor";
 import DoctorRecord from "./Components/Doctor/DoctorRecord";
-import Navbar from "./Components/Navbar";
-import NewEntryForm from "./Components/Doctor/NewDoctorEntryForm";
-import NewPharmacyEntry from "./Components/Pharmacy/NewPharmacyEntry";
+// import Navbar from "./Components/Navbar";
+import NewEntryForm from "./Components/Admin/NewDoctorEntryForm";
+import NewPharmacyEntry from "./Components/Admin/NewPharmacyEntry";
 // import PatientRecordForm from "./Components/Doctor/NewPatientEntryForm";
 // import Table from "./Components/Table";
 import React, { useState } from "react";
@@ -16,10 +17,10 @@ import Distributor from "./Components/Distributor/Distributer";
 import TabCard from "./Components/TabCard";
 import Manufacturer from "./Components/Manufacturer/Manufacturer";
 import Supplier from "./Components/Supplier/Supplier";
-import SupplierNewEntry from "./Components/Supplier/SupplierNewEntry";
+import SupplierNewEntry from "./Components/Admin/SupplierNewEntry";
 import SupplierVInventory from "./Components/Supplier/SupplierVInventory";
 import SupplierMDFStock from "./Components/Supplier/SupplierMDFStock";
-import NewPatientEntryForm from "./Components/Doctor/NewPatientEntryForm";
+import NewPatientEntryForm from "./Components/Admin/NewPatientEntryForm";
 import PatientRecord from "./Components/Doctor/PatientRecord";
 import Search from "./Components/Search";
 import PharmacyInventory from "./Components/Pharmacy/PharmacyInventory";
@@ -28,16 +29,23 @@ import PharmacyDisStock from "./Components/Pharmacy/PharmacyDisStock";
 import DInventory from "./Components/Distributor/DInventory";
 import PHStock from "./Components/Distributor/PHStock";
 import SStock from "./Components/Distributor/SStock";
-import NewManufacturerEntry from "./Components/Manufacturer/NewManufacturerEntry";
+import NewManufacturerEntry from "./Components/Admin/NewManufacturerEntry";
 import ManufacturerSStock from "./Components/Manufacturer/ManufacturerSStock";
 import MInventory from "./Components/Manufacturer/MInventory";
 import VStock from "./Components/Manufacturer/VStock";
 import Stockist from "./Components/Stockist/Stockist";
-import StockistNewEntry from "./Components/Stockist/StockistNewEntry";
+import StockistNewEntry from "./Components/Admin/StockistNewEntry";
 import StockistInventory from "./Components/Stockist/StockistInventory";
 import StockistDStock from "./Components/Stockist/StockistDStock";
 import StockistMstock from "./Components/Stockist/StockistMstock";
-import NewDistributerEntry from "./Components/Distributor/NewDistributerEntry";
+import NewDistributerEntry from "./Components/Admin/NewDistributerEntry";
+
+import Footer from "./Components/Footer";
+import ButtonToggle from "./Components/ButtonToggle";
+import Overlay from "./Components/Overlay";
+// import { useState } from "react";
+import Sidebar from "./Components/Sidebar";
+import Admin from "./Components/Admin/Admin";
 
 function App() {
   const [doctors, setDoctors] = useState([]);
@@ -51,6 +59,9 @@ function App() {
   const handleSubmit = (newDoctors) => {
     setDoctors(newDoctors); // Update the doctors state in the parent component
   };
+
+  const [active, setActive] = useState(false);
+  const toggle = () => setActive(!active);
   return (
     <>
       <Router>
@@ -59,25 +70,37 @@ function App() {
             path="/"
             element={
               <>
-                <Navbar />
+                <ButtonToggle onClick={toggle} />
+                <Overlay
+                  className={active ? "overlay active" : "overlay"}
+                  onClick={toggle}
+                />
+                <Sidebar className={active ? "active" : null} />
+
                 <Cards />
+                <Footer />
                 {/* <BarChart /> */}
               </>
             }
           />
 
-          {/* DOCTOR ROUTES LINKS START */}
-
+          {/* ADMIN ROUTES LINKS START */}
           <Route
-            path="/doctor"
+            path="/admin"
             element={
               <>
-                <Navbar />
-                <Doctor />
-                <TabCard
-                  title="DOCTOR TAB"
-                  desc="This section contains the forms to register and display the doctors and patients"
+                <ButtonToggle onClick={toggle} />
+                <Overlay
+                  className={active ? "overlay active" : "overlay"}
+                  onClick={toggle}
                 />
+                <Sidebar className={active ? "active" : null} />
+                <Admin />
+                <TabCard
+                  title="ADMIN TAB"
+                  desc="This section contains the registration forms"
+                />
+                <Footer />
               </>
             }
           />
@@ -86,21 +109,17 @@ function App() {
             path="/new-entry"
             element={
               <>
-                <Navbar />
-                <Doctor />
+                {/* <Navbar /> */}
+                {/* <Doctor /> */}
+                <ButtonToggle onClick={toggle} />
+                <Overlay
+                  className={active ? "overlay active" : "overlay"}
+                  onClick={toggle}
+                />
+                <Sidebar className={active ? "active" : null} />
+                <Admin />
                 <NewEntryForm onSubmit={handleSubmit} />
-              </>
-            }
-          />
-
-          <Route
-            path="/doctor-record"
-            element={
-              <>
-                <Navbar />
-                <Doctor />
-                <Search />
-                <DoctorRecord doctors={doctors} />
+                <Footer />
               </>
             }
           />
@@ -109,21 +128,168 @@ function App() {
             path="/patient-entry"
             element={
               <>
-                <Navbar />
-                <Doctor />
+                <ButtonToggle onClick={toggle} />
+                <Overlay
+                  className={active ? "overlay active" : "overlay"}
+                  onClick={toggle}
+                />
+                <Sidebar className={active ? "active" : null} />
+                <Admin />
                 <NewPatientEntryForm onSubmit={handleSubmitPatient} />
+                <Footer />
               </>
             }
           />
 
           <Route
+            path="/new-pharmacy-entry"
+            element={
+              <>
+                <ButtonToggle onClick={toggle} />
+                <Overlay
+                  className={active ? "overlay active" : "overlay"}
+                  onClick={toggle}
+                />
+                <Sidebar className={active ? "active" : null} />
+                <Admin />
+                <NewPharmacyEntry />
+                <Footer />
+              </>
+            }
+          />
+
+          <Route
+            path="/new-entry-dist"
+            element={
+              <>
+                {" "}
+                <ButtonToggle onClick={toggle} />
+                <Overlay
+                  className={active ? "overlay active" : "overlay"}
+                  onClick={toggle}
+                />
+                <Sidebar className={active ? "active" : null} />
+                <Admin />
+                <NewDistributerEntry />
+                <Footer />
+              </>
+            }
+          />
+
+          <Route
+            path="/new-manufacturer-entry"
+            element={
+              <>
+                <ButtonToggle onClick={toggle} />
+                <Overlay
+                  className={active ? "overlay active" : "overlay"}
+                  onClick={toggle}
+                />
+                <Sidebar className={active ? "active" : null} />
+                <Admin />
+                <NewManufacturerEntry />
+                <Footer />
+              </>
+            }
+          />
+
+          <Route
+            path="/new-stockist-entry"
+            element={
+              <>
+                {" "}
+                <ButtonToggle onClick={toggle} />
+                <Overlay
+                  className={active ? "overlay active" : "overlay"}
+                  onClick={toggle}
+                />
+                <Sidebar className={active ? "active" : null} />
+                <Admin />
+                <StockistNewEntry />
+                <Footer />
+              </>
+            }
+          />
+
+          <Route
+            path="/new-supplier-entry"
+            element={
+              <>
+                <ButtonToggle onClick={toggle} />
+                <Overlay
+                  className={active ? "overlay active" : "overlay"}
+                  onClick={toggle}
+                />
+                <Sidebar className={active ? "active" : null} />
+                <Admin />
+                <SupplierNewEntry />
+                <Footer />
+              </>
+            }
+          />
+          {/* ADMIN ROUTES LINKS END */}
+          {/* DOCTOR ROUTES LINKS START */}
+          <Route
+            path="/doctor"
+            element={
+              <>
+                {/* <Navbar /> */}
+                <ButtonToggle onClick={toggle} />
+                <Overlay
+                  className={active ? "overlay active" : "overlay"}
+                  onClick={toggle}
+                />
+                <Sidebar className={active ? "active" : null} />
+                <Doctor />
+                <TabCard
+                  title="DOCTOR TAB"
+                  desc="This section contains the forms to register and display the doctors and patients"
+                />
+                <Footer />
+              </>
+            }
+          />
+          {/*
+           */}
+
+          <Route
+            path="/doctor-record"
+            element={
+              <>
+                {/* <Navbar /> */}
+
+                <ButtonToggle onClick={toggle} />
+                <Overlay
+                  className={active ? "overlay active" : "overlay"}
+                  onClick={toggle}
+                />
+                <Sidebar className={active ? "active" : null} />
+                <Doctor />
+                <Search />
+                <DoctorRecord doctors={doctors} />
+                <Footer />
+              </>
+            }
+          />
+
+          {/*  */}
+
+          <Route
             path="/patient-record"
             element={
               <>
-                <Navbar />
+                {/* <Navbar /> */}
+                <ButtonToggle onClick={toggle} />
+                <Overlay
+                  className={active ? "overlay active" : "overlay"}
+                  onClick={toggle}
+                />
+                <Sidebar className={active ? "active" : null} />
+
                 <Doctor />
                 <Search />
                 <PatientRecord patients={patients} />
+                <Footer />
               </>
             }
           />
@@ -135,34 +301,41 @@ function App() {
             path="/pharmacy"
             element={
               <>
-                <Navbar />
+                {/* <Navbar /> */}
+                <ButtonToggle onClick={toggle} />
+                <Overlay
+                  className={active ? "overlay active" : "overlay"}
+                  onClick={toggle}
+                />
+                <Sidebar className={active ? "active" : null} />
+
                 <Pharmacy />
                 <TabCard
                   title="PHARMACY TAB"
                   desc="This section contains the forms to register and display the inventory items"
                 />
+                <Footer />
               </>
             }
           />
 
-          <Route
-            path="/new-pharmacy-entry"
-            element={
-              <>
-                <Navbar />
-                <Pharmacy />
-                <NewPharmacyEntry />
-              </>
-            }
-          />
+          {/*  */}
 
           <Route
             path="/ph-inventory"
             element={
               <>
-                <Navbar />
+                {/* <Navbar /> */}
+                <ButtonToggle onClick={toggle} />
+                <Overlay
+                  className={active ? "overlay active" : "overlay"}
+                  onClick={toggle}
+                />
+                <Sidebar className={active ? "active" : null} />
+
                 <Pharmacy />
                 <PharmacyInventory />
+                <Footer />
               </>
             }
           />
@@ -171,9 +344,17 @@ function App() {
             path="/customer-request"
             element={
               <>
-                <Navbar />
+                {/* <Navbar /> */}
+                <ButtonToggle onClick={toggle} />
+                <Overlay
+                  className={active ? "overlay active" : "overlay"}
+                  onClick={toggle}
+                />
+                <Sidebar className={active ? "active" : null} />
+
                 <Pharmacy />
                 <PharmacyCrossCheck />
+                <Footer />
               </>
             }
           />
@@ -182,9 +363,17 @@ function App() {
             path="/dis-stock"
             element={
               <>
-                <Navbar />
+                {/* <Navbar /> */}
+                <ButtonToggle onClick={toggle} />
+                <Overlay
+                  className={active ? "overlay active" : "overlay"}
+                  onClick={toggle}
+                />
+                <Sidebar className={active ? "active" : null} />
+
                 <Pharmacy />
                 <PharmacyDisStock />
+                <Footer />
               </>
             }
           />
@@ -195,12 +384,20 @@ function App() {
             path="/distributor"
             element={
               <>
-                <Navbar />
+                {/* <Navbar /> */}
+                <ButtonToggle onClick={toggle} />
+                <Overlay
+                  className={active ? "overlay active" : "overlay"}
+                  onClick={toggle}
+                />
+                <Sidebar className={active ? "active" : null} />
+
                 <Distributor />
                 <TabCard
                   title="DISTRIBUTOR TAB"
                   desc="This section contains the forms to register and display the Distributors."
                 />
+                <Footer />
               </>
             }
           />
@@ -209,31 +406,38 @@ function App() {
             path="/d-inventory"
             element={
               <>
-                <Navbar />
+                {/* <Navbar /> */}
+                <ButtonToggle onClick={toggle} />
+                <Overlay
+                  className={active ? "overlay active" : "overlay"}
+                  onClick={toggle}
+                />
+                <Sidebar className={active ? "active" : null} />
+
                 <Distributor />
                 <DInventory />
+                <Footer />
               </>
             }
           />
-
-          <Route
-            path="/new-entry-dist"
-            element={
-              <>
-                <Navbar />
-                <Distributor />
-                <NewDistributerEntry/>
-              </>
-            }
-          />
+          {/*
+           */}
 
           <Route
             path="/pharmacy-stock"
             element={
               <>
-                <Navbar />
+                {/* <Navbar /> */}
+                <ButtonToggle onClick={toggle} />
+                <Overlay
+                  className={active ? "overlay active" : "overlay"}
+                  onClick={toggle}
+                />
+                <Sidebar className={active ? "active" : null} />
+
                 <Distributor />
                 <PHStock />
+                <Footer />
               </>
             }
           />
@@ -242,9 +446,17 @@ function App() {
             path="/s-stock"
             element={
               <>
-                <Navbar />
+                {/* <Navbar /> */}
+                <ButtonToggle onClick={toggle} />
+                <Overlay
+                  className={active ? "overlay active" : "overlay"}
+                  onClick={toggle}
+                />
+                <Sidebar className={active ? "active" : null} />
+
                 <Distributor />
                 <SStock />
+                <Footer />
               </>
             }
           />
@@ -255,34 +467,41 @@ function App() {
             path="/manufacturer"
             element={
               <>
-                <Navbar />
+                {/* <Navbar /> */}
+                <ButtonToggle onClick={toggle} />
+                <Overlay
+                  className={active ? "overlay active" : "overlay"}
+                  onClick={toggle}
+                />
+                <Sidebar className={active ? "active" : null} />
+
                 <Manufacturer />
                 <TabCard
                   title="MANUFACTURER TAB"
                   desc="This section contains the forms to register and display the Manufacturer."
                 />
+                <Footer />
               </>
             }
           />
 
-          <Route
-            path="/new-manufacturer-entry"
-            element={
-              <>
-                <Navbar />
-                <Manufacturer />
-                <NewManufacturerEntry />
-              </>
-            }
-          />
+          {/*  */}
 
           <Route
             path="/m-inventory"
             element={
               <>
-                <Navbar />
+                <ButtonToggle onClick={toggle} />
+                <Overlay
+                  className={active ? "overlay active" : "overlay"}
+                  onClick={toggle}
+                />
+                <Sidebar className={active ? "active" : null} />
+
+                {/* <Navbar /> */}
                 <Manufacturer />
                 <MInventory />
+                <Footer />
               </>
             }
           />
@@ -291,9 +510,17 @@ function App() {
             path="/ms-stock"
             element={
               <>
-                <Navbar />
+                {/* <Navbar /> */}
+                <ButtonToggle onClick={toggle} />
+                <Overlay
+                  className={active ? "overlay active" : "overlay"}
+                  onClick={toggle}
+                />
+                <Sidebar className={active ? "active" : null} />
+
                 <Manufacturer />
                 <ManufacturerSStock />
+                <Footer />
               </>
             }
           />
@@ -301,9 +528,17 @@ function App() {
             path="/v-stock"
             element={
               <>
-                <Navbar />
+                {/* <Navbar /> */}
+                <ButtonToggle onClick={toggle} />
+                <Overlay
+                  className={active ? "overlay active" : "overlay"}
+                  onClick={toggle}
+                />
+                <Sidebar className={active ? "active" : null} />
+
                 <Manufacturer />
                 <VStock />
+                <Footer />
               </>
             }
           />
@@ -314,34 +549,40 @@ function App() {
             path="/stockist"
             element={
               <>
-                <Navbar />
+                {/* <Navbar />
+                 */}
+                <ButtonToggle onClick={toggle} />
+                <Overlay
+                  className={active ? "overlay active" : "overlay"}
+                  onClick={toggle}
+                />
+                <Sidebar className={active ? "active" : null} />
+
                 <Stockist />
                 <TabCard
                   title="STOCKIST TAB"
                   desc="This section contains the forms to register and display the Stockist."
                 />
+                <Footer />
               </>
             }
           />
 
-          <Route
-            path="/new-stockist-entry"
-            element={
-              <>
-                <Navbar />
-                <Stockist />
-                <StockistNewEntry />
-              </>
-            }
-          />
+          {/* */}
 
           <Route
             path="/sm-inventory"
             element={
               <>
-                <Navbar />
+                {/* <Navbar /> */} <ButtonToggle onClick={toggle} />
+                <Overlay
+                  className={active ? "overlay active" : "overlay"}
+                  onClick={toggle}
+                />
+                <Sidebar className={active ? "active" : null} />
                 <Stockist />
                 <StockistInventory />
+                <Footer />
               </>
             }
           />
@@ -350,9 +591,17 @@ function App() {
             path="/ss-stock"
             element={
               <>
-                <Navbar />
+                {/* <Navbar /> */}
+                <ButtonToggle onClick={toggle} />
+                <Overlay
+                  className={active ? "overlay active" : "overlay"}
+                  onClick={toggle}
+                />
+                <Sidebar className={active ? "active" : null} />
+
                 <Stockist />
                 <StockistDStock />
+                <Footer />
               </>
             }
           />
@@ -361,9 +610,15 @@ function App() {
             path="/sm-stock"
             element={
               <>
-                <Navbar />
+                {/* <Navbar /> */} <ButtonToggle onClick={toggle} />
+                <Overlay
+                  className={active ? "overlay active" : "overlay"}
+                  onClick={toggle}
+                />
+                <Sidebar className={active ? "active" : null} />
                 <Stockist />
                 <StockistMstock />
+                <Footer />
               </>
             }
           />
@@ -374,34 +629,41 @@ function App() {
             path="/supplier"
             element={
               <>
-                <Navbar />
+                {/* <Navbar /> */}
+                <ButtonToggle onClick={toggle} />
+                <Overlay
+                  className={active ? "overlay active" : "overlay"}
+                  onClick={toggle}
+                />
+                <Sidebar className={active ? "active" : null} />
+
                 <Supplier />
                 <TabCard
                   title="SUPPLIER TAB"
                   desc="This section contains the forms to register and display the Supplier."
                 />
+                <Footer />
               </>
             }
           />
 
-          <Route
-            path="/new-supplier-entry"
-            element={
-              <>
-                <Navbar />
-                <Supplier />
-                <SupplierNewEntry />
-              </>
-            }
-          />
+          {/*  */}
 
           <Route
             path="/v-inventory"
             element={
               <>
-                <Navbar />
+                {/* <Navbar /> */}
+                <ButtonToggle onClick={toggle} />
+                <Overlay
+                  className={active ? "overlay active" : "overlay"}
+                  onClick={toggle}
+                />
+                <Sidebar className={active ? "active" : null} />
+
                 <Supplier />
                 <SupplierVInventory />
+                <Footer />
               </>
             }
           />
@@ -410,9 +672,17 @@ function App() {
             path="/mdf-stock"
             element={
               <>
-                <Navbar />
+                {/* <Navbar /> */}
+                <ButtonToggle onClick={toggle} />
+                <Overlay
+                  className={active ? "overlay active" : "overlay"}
+                  onClick={toggle}
+                />
+                <Sidebar className={active ? "active" : null} />
+
                 <Supplier />
                 <SupplierMDFStock />
+                <Footer />
               </>
             }
           />

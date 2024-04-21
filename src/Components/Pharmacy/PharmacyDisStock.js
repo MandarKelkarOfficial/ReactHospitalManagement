@@ -21,7 +21,7 @@ export default function PharmacyDisStock() {
                     id="floatingInput"
                     placeholder="Paracitomol"
                   />
-                  <label for="floatingInput">Paracitomol</label>
+                  <label htmlFor="floatingInput">Paracitomol</label>
                 </div>
                 <div className="form-floating mb-3">
                   <input
@@ -30,7 +30,7 @@ export default function PharmacyDisStock() {
                     id="floatingInput"
                     placeholder="Ofloxin"
                   />
-                  <label for="floatingInput">Ofloxin</label>
+                  <label htmlFor="floatingInput">Ofloxin</label>
                 </div>
                 <div className="form-floating mb-3">
                   <input
@@ -39,7 +39,7 @@ export default function PharmacyDisStock() {
                     id="floatingInput"
                     placeholder="Glycomate"
                   />
-                  <label for="floatingInput">Glycomate</label>
+                  <label htmlFor="floatingInput">Glycomate</label>
                 </div>
                 <div className="form-floating mb-3">
                   <input
@@ -48,7 +48,7 @@ export default function PharmacyDisStock() {
                     id="floatingInput"
                     placeholder="Insulin"
                   />
-                  <label for="floatingInput">Insulin</label>
+                  <label htmlFor="floatingInput">Insulin</label>
                 </div>
                 <div className="form-floating mb-3">
                   <input
@@ -57,7 +57,7 @@ export default function PharmacyDisStock() {
                     id="floatingInput"
                     placeholder="Amoxil"
                   />
-                  <label for="floatingInput">Amoxil</label>
+                  <label htmlFor="floatingInput">Amoxil</label>
                 </div>
                 <div className="row w-full">
                   <div className="col">

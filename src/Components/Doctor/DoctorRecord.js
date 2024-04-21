@@ -24,7 +24,7 @@ function DoctorRecord() {
 
       <h2 className="text-center mt-2">Doctor Records</h2>
       <table className="table mt-2">
-        <thead>
+        <thead className="text-center">
           <tr>
             <th scope="col">Doctor ID</th>
             <th scope="col">Email</th>
@@ -39,7 +39,7 @@ function DoctorRecord() {
             <th scope="col">License Number</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody className="table-group-divider text-center">
           {doctors.map((doctor) => (
             <tr key={doctor._id}>
               <td>{doctor.id}</td>

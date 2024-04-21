@@ -43,8 +43,7 @@ a:focus {
 }
 
 .toggle-content {
-  /* margin: 5rem auto 0 auto; */
-  margin-top: 2rem;
+  margin: 5rem auto 0 auto;
   text-align: center;
 }
 
