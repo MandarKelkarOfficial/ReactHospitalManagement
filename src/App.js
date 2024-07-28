@@ -46,6 +46,7 @@ import Overlay from "./Components/Overlay";
 // import { useState } from "react";
 import Sidebar from "./Components/Sidebar";
 import Admin from "./Components/Admin/Admin";
+import CardWithChart from "./Components/CardWithChart";
 
 function App() {
   const [doctors, setDoctors] = useState([]);
@@ -62,6 +63,58 @@ function App() {
 
   const [active, setActive] = useState(false);
   const toggle = () => setActive(!active);
+
+
+
+  // Test DATA
+
+  const doctorData = [
+    { value: 1048, name: 'Paracetamol' },
+    { value: 735, name: 'Ibuprofen' },
+    { value: 580, name: 'Aspirin' },
+    { value: 484, name: 'Amoxicillin' },
+    { value: 300, name: 'Ciprofloxacin' }
+  ];
+
+  const pharmacyData = [
+    { value: 800, name: 'Metformin' },
+    { value: 600, name: 'Omeprazole' },
+    { value: 400, name: 'Levothyroxine' },
+    { value: 300, name: 'Simvastatin' },
+    { value: 200, name: 'Lisinopril' }
+  ];
+
+  const distributorData = [
+    { value: 900, name: 'Atorvastatin' },
+    { value: 700, name: 'Amlodipine' },
+    { value: 500, name: 'Metoprolol' },
+    { value: 300, name: 'Hydrochlorothiazide' },
+    { value: 100, name: 'Losartan' }
+  ];
+
+  const manufacturerData = [
+    { value: 1200, name: 'Albuterol' },
+    { value: 950, name: 'Gabapentin' },
+    { value: 700, name: 'Hydrocodone' },
+    { value: 450, name: 'Fluticasone' },
+    { value: 200, name: 'Furosemide' }
+  ];
+
+  const stockiestData = [
+    { value: 1100, name: 'Pantoprazole' },
+    { value: 850, name: 'Prednisone' },
+    { value: 650, name: 'Tamsulosin' },
+    { value: 400, name: 'Rosuvastatin' },
+    { value: 250, name: 'Tramadol' }
+  ];
+
+  const supplierData = [
+    { value: 1300, name: 'Montelukast' },
+    { value: 1000, name: 'Meloxicam' },
+    { value: 750, name: 'Allopurinol' },
+    { value: 500, name: 'Clopidogrel' },
+    { value: 250, name: 'Cephalexin' }
+  ];
   return (
     <>
       <Router>
@@ -241,10 +294,7 @@ function App() {
                 />
                 <Sidebar className={active ? "active" : null} />
                 <Doctor />
-                <TabCard
-                  title="DOCTOR TAB"
-                  desc="This section contains the forms to register and display the doctors and patients"
-                />
+                <CardWithChart title="Doctors" data={doctorData} />
                 <Footer />
               </>
             }

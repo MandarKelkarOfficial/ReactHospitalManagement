@@ -1,111 +1,175 @@
+// import React from "react";
+// import CardWithChart from "./CardWithChart";
+
+// export default function Cards() {
+//   const doctorData = [
+//     { value: 1048, name: 'Paracetamol' },
+//     { value: 735, name: 'Ibuprofen' },
+//     { value: 580, name: 'Aspirin' },
+//     { value: 484, name: 'Amoxicillin' },
+//     { value: 300, name: 'Ciprofloxacin' }
+//   ];
+
+//   const pharmacyData = [
+//     { value: 800, name: 'Metformin' },
+//     { value: 600, name: 'Omeprazole' },
+//     { value: 400, name: 'Levothyroxine' },
+//     { value: 300, name: 'Simvastatin' },
+//     { value: 200, name: 'Lisinopril' }
+//   ];
+
+//   const distributorData = [
+//     { value: 900, name: 'Atorvastatin' },
+//     { value: 700, name: 'Amlodipine' },
+//     { value: 500, name: 'Metoprolol' },
+//     { value: 300, name: 'Hydrochlorothiazide' },
+//     { value: 100, name: 'Losartan' }
+//   ];
+
+//   const manufacturerData = [
+//     { value: 1200, name: 'Albuterol' },
+//     { value: 950, name: 'Gabapentin' },
+//     { value: 700, name: 'Hydrocodone' },
+//     { value: 450, name: 'Fluticasone' },
+//     { value: 200, name: 'Furosemide' }
+//   ];
+
+//   const stockiestData = [
+//     { value: 1100, name: 'Pantoprazole' },
+//     { value: 850, name: 'Prednisone' },
+//     { value: 650, name: 'Tamsulosin' },
+//     { value: 400, name: 'Rosuvastatin' },
+//     { value: 250, name: 'Tramadol' }
+//   ];
+
+//   const supplierData = [
+//     { value: 1300, name: 'Montelukast' },
+//     { value: 1000, name: 'Meloxicam' },
+//     { value: 750, name: 'Allopurinol' },
+//     { value: 500, name: 'Clopidogrel' },
+//     { value: 250, name: 'Cephalexin' }
+//   ];
+
+//   return (
+//     <>
+//       <div className="container ">
+//         <div className="row gap-2 mt-3 d-flex justify-content-center align-items-center">
+//           <div className="col mb-3">
+//             <CardWithChart title="Doctors" data={doctorData} />
+//           </div>
+
+//           <div className="col mb-3">
+//             <CardWithChart title="Pharmacy" data={pharmacyData} />
+//           </div>
+
+//           <div className="col mb-3">
+//             <CardWithChart title="Distributor" data={distributorData} />
+//           </div>
+//         </div>
+//       </div>
+
+//       <div className="container ">
+//         <div className="row gap-2 d-flex justify-content-center align-items-center">
+//           <div className="col mb-3">
+//             <CardWithChart title="Manufacturer" data={manufacturerData} />
+//           </div>
+
+//           <div className="col mb-3">
+//             <CardWithChart title="Stockiest" data={stockiestData} />
+//           </div>
+
+//           <div className="col mb-3">
+//             <CardWithChart title="Supplier" data={supplierData} />
+//           </div>
+//         </div>
+//       </div>
+//     </>
+//   );
+// }
+
+
+
 import React from "react";
-import Table from "./Table";
+import CardWithChart from "./CardWithChart";
 
 export default function Cards() {
+  const doctorData = [
+    { value: 1048, name: 'Paracetamol' },
+    { value: 735, name: 'Ibuprofen' },
+    { value: 580, name: 'Aspirin' },
+    { value: 484, name: 'Amoxicillin' },
+    { value: 300, name: 'Ciprofloxacin' }
+  ];
+
+  const pharmacyData = [
+    { value: 800, name: 'Metformin' },
+    { value: 600, name: 'Omeprazole' },
+    { value: 400, name: 'Levothyroxine' },
+    { value: 300, name: 'Simvastatin' },
+    { value: 200, name: 'Lisinopril' }
+  ];
+
+  const distributorData = [
+    { value: 900, name: 'Atorvastatin' },
+    { value: 700, name: 'Amlodipine' },
+    { value: 500, name: 'Metoprolol' },
+    { value: 300, name: 'Hydrochlorothiazide' },
+    { value: 100, name: 'Losartan' }
+  ];
+
+  const manufacturerData = [
+    { value: 1200, name: 'Albuterol' },
+    { value: 950, name: 'Gabapentin' },
+    { value: 700, name: 'Hydrocodone' },
+    { value: 450, name: 'Fluticasone' },
+    { value: 200, name: 'Furosemide' }
+  ];
+
+  const stockiestData = [
+    { value: 1100, name: 'Pantoprazole' },
+    { value: 850, name: 'Prednisone' },
+    { value: 650, name: 'Tamsulosin' },
+    { value: 400, name: 'Rosuvastatin' },
+    { value: 250, name: 'Tramadol' }
+  ];
+
+  const supplierData = [
+    { value: 1300, name: 'Montelukast' },
+    { value: 1000, name: 'Meloxicam' },
+    { value: 750, name: 'Allopurinol' },
+    { value: 500, name: 'Clopidogrel' },
+    { value: 250, name: 'Cephalexin' }
+  ];
+
   return (
-    <div>
-      <div className="container d-flex justify-content-start align-items-center gap-5 mt-5">
-        <div
-          className="card shadow-sm"
-          style={{
-            width: "15rem",
-            height: "9.5rem",
-            backgroundColor: "#002244",
-          }}
-        >
-          <div className="card-body">
-            <h5 className="card-title text-white">Doctors</h5>
-            <h6 className="card-subtitle mb-2 mt-1 text-white">Total : 4</h6>
+    <>
+      <div className="container ">
+        <div className="row gap-2 mt-3 d-flex justify-content-center align-items-center">
+          <div className="col mb-3">
+            <CardWithChart title="Doctors" data={doctorData} />
           </div>
-        </div>
-
-        <div
-          className="card shadow-sm"
-          style={{
-            width: "15rem",
-            height: "9.5rem",
-            backgroundColor: "#002244",
-          }}
-        >
-          <div className="card-body">
-            <h5 className="card-title text-white">Pharmacy</h5>
-            <h6 className="card-subtitle mb-2 mt-1 text-white">Total : 2</h6>
+          <div className="col-md-4 mb-3">
+            <CardWithChart title="Pharmacy" data={pharmacyData} />
           </div>
-        </div>
-
-        <div
-          className="card shadow-sm"
-          style={{
-            width: "15rem",
-            height: "9.5rem",
-            backgroundColor: "#002244",
-          }}
-        >
-          <div className="card-body">
-            <h5 className="card-title text-white">Distributor</h5>
-            <h6 className="card-subtitle mb-2 mt-1 text-white">Total : 4</h6>
-          </div>
-        </div>
-
-        <div
-          className="card shadow-md"
-          style={{
-            width: "15rem",
-            height: "9.5rem",
-            backgroundColor: "#002244",
-          }}
-        >
-          <div className="card-body ">
-            <h5 className="card-title text-white ">Manufacturer </h5>
-            <h6 className="card-subtitle mb-2 mt-1 text-white ">Total : 2</h6>
-          </div>
-        </div>
-        <div
-          className="card shadow-md"
-          style={{
-            width: "15rem",
-            height: "9.5rem",
-            backgroundColor: "#002244",
-          }}
-        >
-          <div className="card-body ">
-            <h5 className="card-title text-white ">Card title</h5>
-            <h6 className="card-subtitle mb-2 mt-1 text-white ">
-              Card subtitle
-            </h6>
+          <div className="col-md-4 mb-3">
+            <CardWithChart title="Distributor" data={distributorData} />
           </div>
         </div>
       </div>
-      <div className="container d-flex justify-content-start align-items-baseline gap-5 mt-5 ">
-        <div
-          className="card shadow-md"
-          style={{
-            width: "15rem",
-            height: "9.5rem",
-            backgroundColor: "#002244",
-          }}
-        >
-          <div className="card-body ">
-            <h5 className="card-title text-white ">Stockiest </h5>
-            <h6 className="card-subtitle mb-2 mt-1 text-white ">Total : 5</h6>
-          </div>
-        </div>
-        <div
-          className="card shadow-md"
-          style={{
-            width: "15rem",
-            height: "9.5rem",
-            backgroundColor: "#002244",
-          }}
-        >
-          <div className="card-body ">
-            <h5 className="card-title text-white ">Supplier </h5>
-            <h6 className="card-subtitle mb-2 mt-1 text-white ">Total : 4</h6>
-          </div>
-        </div>
 
-        <Table />
+      <div className="container">
+        <div className="row gap-2 d-flex justify-content-center align-items-center">
+          <div className="col mb-3">
+            <CardWithChart title="Manufacturer" data={manufacturerData} />
+          </div>
+          <div className="col-md-4 mb-3">
+            <CardWithChart title="Stockiest" data={stockiestData} />
+          </div>
+          <div className="col-md-4 mb-3">
+            <CardWithChart title="Supplier" data={supplierData} />
+          </div>
+        </div>
       </div>
-    </div>
+    </>
   );
 }

@@ -17,11 +17,11 @@ export default function Footer() {
     <div>
           <footer className="footer">
       <p className="yo-content">
-        <a href={FooterContent[0].url} className="yo">
-          Mandar Kelkar
+        <a href={FooterContent[1].url} className="yo">
+         React | Hospital Management System
         </a>
       </p>
-      <p>Contact me on the different platforms and social networks</p>
+      {/* <p>Contact me on the different platforms and social networks</p>
       <div className="footer-social">
         {FooterContent.map(({ url, icon }, index) => (
           <a
@@ -35,7 +35,7 @@ export default function Footer() {
             </svg>
           </a>
         ))}
-      </div>
+      </div> */}
     </footer>
     </div>
   )
